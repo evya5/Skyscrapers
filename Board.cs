@@ -14,7 +14,7 @@ namespace Skyscrapers
         private const string HighScoreFileName = "/highscores.txt";
         // Constants Labels text
         public const string TitleLabelText = "SKYSCRAPERS";
-        public const string HighscoreLabelText = "HighScore";
+        public const string HighscoreLabelText = "Highscore";
         public const string MadeByLabelText = "Made by";
         public const string AllRightsLabelText = "© 2021 All Rights Reserved.";
         // Constants Buttons text
