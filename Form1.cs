@@ -22,8 +22,6 @@ namespace Skyscrapers
             GameClock = new System.Timers.Timer();
             InitClock();
             InitWindow();
-            highScore.Text = Board.GetHighScore().Item1;
-            highScoreName.Text = Board.GetHighScore().Item2;
         }
 
         private void InitWindow()
@@ -40,8 +38,6 @@ namespace Skyscrapers
             labelSkyScrapers.ForeColor = Board.TitleColor;
             labelSkyScrapers.Text = Board.TitleLabelText;
             allRightsLabel.Text = Board.AllRightsLabelText;
-            highScoreTitle.Text = Board.HighscoreLabelText;
-            madeByTitle.Text = Board.MadeByLabelText;
         }
 
         private void InitButtons()
@@ -190,17 +186,7 @@ namespace Skyscrapers
             ConfigEndGameButtons(); // Changing the buttons to disable to press (reset, hint, solve)
             ResetCellChoice(); // Clears cells choice
             GameClock.Stop(); // Stops highscore
-            if (Board.CheckHighScore(displayClock.Text) && Board.DidNotUsedHints())
-            {
-                highScore.Text = displayClock.Text;
-                highScoreName.Text = "";
-                highScoreName.Enabled = true;
-                highScoreName.ReadOnly = false;
-                submit.Visible = true;
-                MessageBox.Show(Board.NewHighScoreEndGameMessage);
-            }
-            else
-                MessageBox.Show(Board.EndGameMessage);
+            MessageBox.Show(Board.EndGameMessage);
         }
 
         private void ConfigEndGameButtons()
@@ -316,16 +302,6 @@ namespace Skyscrapers
 
         }
 
-        private void Submit_Click(object sender, EventArgs e)
-        {
-            highScoreName.Enabled = false;
-            highScoreName.ReadOnly = true;
-            if (highScoreName.Text == "")
-                highScoreName.Text = Board.DefaultSubmitName;
-            (string, string) new_high_score = (displayClock.Text, highScoreName.Text);
-            Board.UpdateHighScore(new_high_score);
-            submit.Visible = false;
-        }
 
         private void ClickedSolve(object sender, EventArgs e)
         {
@@ -341,14 +317,6 @@ namespace Skyscrapers
                         {
                             if (cell.Name.StartsWith("cell") && cell.Name.EndsWith(ending))
                             {
-                                cell.Text = "1";
-                                guiPanel.Refresh();
-                                cell.Text = "2";
-                                guiPanel.Refresh();
-                                cell.Text = "3";
-                                guiPanel.Refresh();
-                                cell.Text = "4";
-                                guiPanel.Refresh();
                                 cell.Text = Board.GetSolveddBoard()[i, j].ToString();
                                 System.Threading.Thread.Sleep(100);
                                 guiPanel.Refresh();
