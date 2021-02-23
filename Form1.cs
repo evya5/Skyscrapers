@@ -1,21 +1,69 @@
 ﻿using System;
 using System.Linq;
 using System.Timers;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Skyscrapers
 {
+    /// <summary>
+    /// The form1 class.
+    /// </summary>
     public partial class Form1 : Form
     {
+        // Constants Labels text
+        private const string TitleLabelText = "SKYSCRAPERS";
+        private const string AllRightsLabelText = "© 2021 All Rights Reserved.";
+        // Constants Buttons text
+        private const string RulesButtonText = "Rules";
+        private const string StartButtonText = "Start";
+        private const string NewGameButtonText = "New Game";
+        private const string ResetButtonText = "Reset";
+        private const string HintButtonText = "Hint";
+        private const string SolveButtonText = "Solve";
+        private const string ExitButtonText = "Exit";
+        // Constants messages
+        private const string RulesMessage =
+            "The rules are simple.\n" +
+            "The objective is to place skyscrapers in all cells on the grid according to the rules:\n" +
+            "The height of the skyscrapers is from 1 to the size of the grid i.e. 1 to 4 for a 4x4 puzzle.\n" +
+            "You cannot have two skyscrapers with the same height on the same row or column.\n" +
+            "The numbers on the sides of the grid indicate how many skyscrapers would you see if you look at the row placed in front of the number.\n" +
+            "Place numbers in each cell to indicate the height of the skyscrapers.\n" +
+            "Have Fun! :)";
+        private const string EndGameMessage =
+            "Congratulations! You finished the puzzle!";
+        private const string SolvedByComputerMessage =
+            "Puzzle was solved by the Computer!";
+        private const string ComputerCouldNotSolveMessage =
+            "There is not an available solution for this specific puzzle!";
+        // Constants colors
+        private Color TitleColor = Color.Fuchsia;
+        private Color TimerColor = Color.DarkMagenta;
+        private Color EdgesColor = Color.Orchid;
+        private Color ChosenCellColor = Color.Gray;
+        private Color ResetCellColor = Color.Pink;
+
+        /// <summary>
+        /// Gets or sets the board.
+        /// </summary>
         private Board Board { get; set; }
         private System.Timers.Timer GameClock;
         private int m, s;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Form1"/> class.
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Form1_S the load.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The e.</param>
         private void Form1_Load(object sender, EventArgs e)
         {
             Board = new Board(Board.BoardSize);
@@ -24,6 +72,9 @@ namespace Skyscrapers
             InitWindow();
         }
 
+        /// <summary>
+        /// Inits the window.
+        /// </summary>
         private void InitWindow()
         {
             InitLabels();
@@ -33,30 +84,39 @@ namespace Skyscrapers
             ResetCellChoice();
         }
 
+        /// <summary>
+        /// Inits the labels.
+        /// </summary>
         private void InitLabels()
         {
-            labelSkyScrapers.ForeColor = Board.TitleColor;
-            labelSkyScrapers.Text = Board.TitleLabelText;
-            allRightsLabel.Text = Board.AllRightsLabelText;
+            labelSkyScrapers.ForeColor = TitleColor;
+            labelSkyScrapers.Text = TitleLabelText;
+            allRightsLabel.Text = AllRightsLabelText;
         }
 
+        /// <summary>
+        /// Inits the buttons.
+        /// </summary>
         private void InitButtons()
         {
-            buttonMainMenu.Text = Board.MainMenuButtonText;
-            buttonStart.Text = Board.StartButtonText;
-            buttonNewGame.Text = Board.NewGameButtonText;
-            buttonReset.Text = Board.ResetButtonText;
-            buttonHint.Text = Board.HintButtonText;
-            buttonSolve.Text = Board.SolveButtonText;
-            buttonExit.Text = Board.ExitButtonText;
+            buttonRules.Text = RulesButtonText;
+            buttonStart.Text = StartButtonText;
+            buttonNewGame.Text = NewGameButtonText;
+            buttonReset.Text = ResetButtonText;
+            buttonHint.Text = HintButtonText;
+            buttonSolve.Text = SolveButtonText;
+            buttonExit.Text = ExitButtonText;
         }
 
+        /// <summary>
+        /// Inits the clock.
+        /// </summary>
         private void InitClock()
         {
             /* This function resests the current Game clock and creates an interval call
              * for the the UpdateTime function.
              */
-            displayClock.BackColor = Board.TimerColor;
+            displayClock.BackColor = TimerColor;
             displayClock.Text = "00:00";
             // Which function to remove from timer:
             GameClock.Elapsed -= UpdateTime;
@@ -71,31 +131,49 @@ namespace Skyscrapers
 
         }
 
+        /// <summary>
+        /// button2_S the click.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The e.</param>
         private void button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Construction area...");
+            MessageBox.Show(RulesMessage);
         }
 
+        /// <summary>
+        /// label1_S the click.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The e.</param>
         private void label1_Click(object sender, EventArgs e)
         {
             ResetCellChoice();
             // Casting object to Label:
             Label chosenCell = sender as Label;
             // Change the color of the clicked cell:
-            chosenCell.BackColor = Board.ChosenCellColor;
+            chosenCell.BackColor = ChosenCellColor;
         }
 
+        /// <summary>
+        /// Resets the cell choice.
+        /// </summary>
         private void ResetCellChoice()
         {
             foreach (var cell in guiPanel.Controls.OfType<Label>().ToList())
             {
                 if (cell.Name.StartsWith("cell"))
                 {
-                    cell.BackColor = Board.ResetCellColor;
+                    cell.BackColor = ResetCellColor;
                 }
             }
         }
 
+        /// <summary>
+        /// Clicks the start button.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The e.</param>
         private void ClickStartButton(object sender, EventArgs e)
         {
             EnableCells(true);
@@ -117,6 +195,11 @@ namespace Skyscrapers
             Setedges(sender, e);
         }
 
+        /// <summary>
+        /// Updates the time.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The e.</param>
         private void UpdateTime(object sender, ElapsedEventArgs e)
         {
             Invoke(new Action(() =>
@@ -136,6 +219,11 @@ namespace Skyscrapers
             }));
         }
 
+        /// <summary>
+        /// Set the edges.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The e.</param>
         private void Setedges(object sender, EventArgs e)
         {
             foreach (var edge in guiPanel.Controls.OfType<Label>().ToList())
@@ -151,13 +239,18 @@ namespace Skyscrapers
         }
 
 
+        /// <summary>
+        /// Form1_S the key press.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The e.</param>
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {   // if key between 1-4 (in ASCII) pressed (in this case, 4x4 board)
             if (e.KeyChar >= 49 && e.KeyChar <= 48 + Board.GetSolvingdBoard().GetLength(0))
             {
                 foreach (var cell in guiPanel.Controls.OfType<Label>().ToList())
                 {   // Checks where is the chosen cell using its color, and update its text
-                    if (cell.Name.StartsWith("cell") && cell.BackColor == Board.ChosenCellColor)
+                    if (cell.Name.StartsWith("cell") && cell.BackColor == ChosenCellColor)
                     {
                         cell.Text = e.KeyChar.ToString();
                         Board.UpdateSolvingBoard(cell.Name, cell.Text);
@@ -172,7 +265,7 @@ namespace Skyscrapers
             {
                 foreach (var cell in guiPanel.Controls.OfType<Label>().ToList())
                 {
-                    if (cell.Name.StartsWith("cell") && cell.BackColor == Board.ChosenCellColor)
+                    if (cell.Name.StartsWith("cell") && cell.BackColor == ChosenCellColor)
                     {
                         cell.Text = "";
                         Board.UpdateSolvingBoard(cell.Name, cell.Text);
@@ -181,14 +274,20 @@ namespace Skyscrapers
             }
         }
 
+        /// <summary>
+        /// Games the finished actions.
+        /// </summary>
         private void GameFinishedActions()
         {
             ConfigEndGameButtons(); // Changing the buttons to disable to press (reset, hint, solve)
             ResetCellChoice(); // Clears cells choice
             GameClock.Stop(); // Stops highscore
-            MessageBox.Show(Board.EndGameMessage);
+            MessageBox.Show(EndGameMessage);
         }
 
+        /// <summary>
+        /// Configs the end game buttons.
+        /// </summary>
         private void ConfigEndGameButtons()
         {   // Changing the buttons to disable to press (reset, hint, solve)
             guiPanel.Enabled = false;
@@ -199,12 +298,22 @@ namespace Skyscrapers
 
         }
 
+        /// <summary>
+        /// Clickeds the exit.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The e.</param>
         private void ClickedExit(object sender, EventArgs e)
         {
             GameClock.Stop();
             Close();
         }
 
+        /// <summary>
+        /// Clickeds the hint.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The e.</param>
         private void ClickedHint(object sender, EventArgs e)
         {
             ResetCellChoice();
@@ -235,6 +344,11 @@ namespace Skyscrapers
 
         }
 
+        /// <summary>
+        /// Clickeds the reset.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The e.</param>
         private void ClickedReset(object sender, EventArgs e)
         {
             ResetCellChoice();
@@ -242,6 +356,9 @@ namespace Skyscrapers
             ResetCellsTextAndColor();
         }
 
+        /// <summary>
+        /// Resets the cells text and color.
+        /// </summary>
         private void ResetCellsTextAndColor()
         {
             foreach (var cell in guiPanel.Controls.OfType<Label>().ToList())
@@ -250,7 +367,7 @@ namespace Skyscrapers
                 {   // Find the index of the cell using its name in the GUI:
                     int row = cell.Name[4] - 48;
                     int col = cell.Name[6] - 48;
-                    cell.BackColor = Board.ResetCellColor;
+                    cell.BackColor = ResetCellColor;
                     // Cell is not empty:
                     if (Board.GetResetBoard()[row, col] == 0)
                     {
@@ -266,6 +383,10 @@ namespace Skyscrapers
             }
         }
 
+        /// <summary>
+        /// Enables the cells.
+        /// </summary>
+        /// <param name="enable">If true, enable.</param>
         private void EnableCells(bool enable)
         {
             // Enables clicks of the board cells
@@ -279,18 +400,26 @@ namespace Skyscrapers
             }
         }
 
+        /// <summary>
+        /// Resets the edeges labels.
+        /// </summary>
         private void ResetEdegesLabels()
         {
             foreach (var edge in guiPanel.Controls.OfType<Label>().ToList())
             {
                 if (edge.Name.StartsWith("edge"))
                 {
-                    edge.BackColor = Board.EdgesColor;
+                    edge.BackColor = EdgesColor;
                     edge.Text = "";
                 }
             }
         }
 
+        /// <summary>
+        /// Clickeds the new game.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The e.</param>
         private void ClickedNewGame(object sender, EventArgs e)
         {
             Board = new Board(4);
@@ -303,6 +432,11 @@ namespace Skyscrapers
         }
 
 
+        /// <summary>
+        /// Clickeds the solve.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The e.</param>
         private void ClickedSolve(object sender, EventArgs e)
         {
             ClickedReset(sender,e);
@@ -328,26 +462,32 @@ namespace Skyscrapers
                 SolvedActions();
             }
             else
-                MessageBox.Show(Board.ComputerCouldNotSolveMessage);
+                MessageBox.Show(ComputerCouldNotSolveMessage);
         }
 
+        /// <summary>
+        /// Solveds the actions.
+        /// </summary>
         private void SolvedActions()
         {
             EnableCells(false);
             ConfigEndGameButtons();
             GameClock.Stop();
-            MessageBox.Show(Board.SolvedByComputerMessage);
+            MessageBox.Show(SolvedByComputerMessage);
 
         }
+        /// <summary>
+        /// Configs the new game buttons.
+        /// </summary>
         private void ConfigNewGameButtons()
         {
-            buttonHint.Text = Board.HintButtonText;
+            buttonHint.Text = HintButtonText;
             buttonHint.Enabled = false;
             buttonReset.Enabled = false;
             buttonSolve.Enabled = false;
             buttonStart.Enabled = true;
             buttonExit.Enabled = true;
-            buttonMainMenu.Enabled = true;
+            buttonRules.Enabled = true;
         }
     }
 }

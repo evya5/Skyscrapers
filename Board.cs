@@ -1,43 +1,16 @@
 ﻿using System;
 using System.Linq;
-using System.Reflection;
-using System.IO;
-using System.Drawing;
 
 namespace Skyscrapers
 {
+    /// <summary>
+    /// The board class.
+    /// </summary>
     class Board
     {
         // Constants variables
         public const int HintsAmount = 3;
         public const int BoardSize = 4;
-        private const string HighScoreFileName = "/highscores.txt";
-        // Constants Labels text
-        public const string TitleLabelText = "SKYSCRAPERS";
-        public const string HighscoreLabelText = "Highscore";
-        public const string MadeByLabelText = "Made by";
-        public const string AllRightsLabelText = "© 2021 All Rights Reserved.";
-        // Constants Buttons text
-        public const string MainMenuButtonText = "Main Menu";
-        public const string StartButtonText = "Start";
-        public const string NewGameButtonText = "New Game";
-        public const string ResetButtonText = "Reset";
-        public const string HintButtonText = "Hint";
-        public const string SolveButtonText = "Solve";
-        public const string ExitButtonText = "Exit";
-        // Constants messages
-        public const string EndGameMessage = 
-            "Congratulations! You finished the puzzle!";
-        public const string SolvedByComputerMessage =
-            "Puzzle was solved by the Computer!";
-        public const string ComputerCouldNotSolveMessage =
-            "There is not an available solution for this specific puzzle!";
-        // Constants colors
-        public Color TitleColor = Color.Fuchsia;
-        public Color TimerColor = Color.DarkMagenta;
-        public Color EdgesColor = Color.Orchid;
-        public Color ChosenCellColor = Color.Gray;
-        public Color ResetCellColor = Color.Pink;
         // Example Board
         private int[,] ExampleBoard;
 

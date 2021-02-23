@@ -69,7 +69,7 @@ namespace Skyscrapers
             this.buttonNewGame = new System.Windows.Forms.Button();
             this.buttonHint = new System.Windows.Forms.Button();
             this.buttonSolve = new System.Windows.Forms.Button();
-            this.buttonMainMenu = new System.Windows.Forms.Button();
+            this.buttonRules = new System.Windows.Forms.Button();
             this.labelSkyScrapers = new System.Windows.Forms.Label();
             this.buttonExit = new System.Windows.Forms.Button();
             this.guiPanel = new System.Windows.Forms.Panel();
@@ -527,17 +527,17 @@ namespace Skyscrapers
             this.buttonSolve.UseVisualStyleBackColor = false;
             this.buttonSolve.Click += new System.EventHandler(this.ClickedSolve);
             // 
-            // buttonMainMenu
+            // buttonRules
             // 
-            this.buttonMainMenu.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.buttonMainMenu.BackColor = System.Drawing.SystemColors.Control;
-            this.buttonMainMenu.Location = new System.Drawing.Point(540, 125);
-            this.buttonMainMenu.Name = "buttonMainMenu";
-            this.buttonMainMenu.Size = new System.Drawing.Size(100, 30);
-            this.buttonMainMenu.TabIndex = 2;
-            this.buttonMainMenu.Text = "Main Menu";
-            this.buttonMainMenu.UseVisualStyleBackColor = false;
-            this.buttonMainMenu.Click += new System.EventHandler(this.button2_Click);
+            this.buttonRules.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.buttonRules.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonRules.Location = new System.Drawing.Point(540, 125);
+            this.buttonRules.Name = "buttonRules";
+            this.buttonRules.Size = new System.Drawing.Size(100, 30);
+            this.buttonRules.TabIndex = 2;
+            this.buttonRules.Text = "Rules";
+            this.buttonRules.UseVisualStyleBackColor = false;
+            this.buttonRules.Click += new System.EventHandler(this.button2_Click);
             // 
             // labelSkyScrapers
             // 
@@ -637,7 +637,7 @@ namespace Skyscrapers
             this.Controls.Add(this.displayClock);
             this.Controls.Add(this.guiPanel);
             this.Controls.Add(this.labelSkyScrapers);
-            this.Controls.Add(this.buttonMainMenu);
+            this.Controls.Add(this.buttonRules);
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.buttonSolve);
             this.Controls.Add(this.buttonHint);
@@ -679,7 +679,7 @@ namespace Skyscrapers
         private System.Windows.Forms.Button buttonNewGame;
         private System.Windows.Forms.Button buttonHint;
         private System.Windows.Forms.Button buttonSolve;
-        private System.Windows.Forms.Button buttonMainMenu;
+        private System.Windows.Forms.Button buttonRules;
         private System.Windows.Forms.Label labelSkyScrapers;
         private System.Windows.Forms.Button buttonExit;
         private System.Windows.Forms.Label cell3x3;
