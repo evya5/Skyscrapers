@@ -69,17 +69,12 @@ namespace Skyscrapers
             this.buttonNewGame = new System.Windows.Forms.Button();
             this.buttonHint = new System.Windows.Forms.Button();
             this.buttonSolve = new System.Windows.Forms.Button();
-            this.buttonMainMenu = new System.Windows.Forms.Button();
+            this.buttonRules = new System.Windows.Forms.Button();
             this.labelSkyScrapers = new System.Windows.Forms.Label();
             this.buttonExit = new System.Windows.Forms.Button();
             this.guiPanel = new System.Windows.Forms.Panel();
             this.gameClock = new System.Windows.Forms.Timer(this.components);
             this.displayClock = new System.Windows.Forms.Label();
-            this.highScoreTitle = new System.Windows.Forms.Label();
-            this.highScore = new System.Windows.Forms.Label();
-            this.madeByTitle = new System.Windows.Forms.Label();
-            this.highScoreName = new System.Windows.Forms.TextBox();
-            this.submit = new System.Windows.Forms.Button();
             this.allRightsLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox34)).BeginInit();
             this.guiPanel.SuspendLayout();
@@ -532,20 +527,23 @@ namespace Skyscrapers
             this.buttonSolve.UseVisualStyleBackColor = false;
             this.buttonSolve.Click += new System.EventHandler(this.ClickedSolve);
             // 
-            // buttonMainMenu
+            // buttonRules
             // 
-            this.buttonMainMenu.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.buttonMainMenu.BackColor = System.Drawing.SystemColors.Control;
-            this.buttonMainMenu.Location = new System.Drawing.Point(540, 125);
-            this.buttonMainMenu.Name = "buttonMainMenu";
-            this.buttonMainMenu.Size = new System.Drawing.Size(100, 30);
-            this.buttonMainMenu.TabIndex = 2;
-            this.buttonMainMenu.Text = "Main Menu";
-            this.buttonMainMenu.UseVisualStyleBackColor = false;
-            this.buttonMainMenu.Click += new System.EventHandler(this.button2_Click);
+            this.buttonRules.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.buttonRules.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonRules.Location = new System.Drawing.Point(540, 125);
+            this.buttonRules.Name = "buttonRules";
+            this.buttonRules.Size = new System.Drawing.Size(100, 30);
+            this.buttonRules.TabIndex = 2;
+            this.buttonRules.Text = "Rules";
+            this.buttonRules.UseVisualStyleBackColor = false;
+            this.buttonRules.Click += new System.EventHandler(this.button2_Click);
             // 
             // labelSkyScrapers
             // 
+            this.labelSkyScrapers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelSkyScrapers.AutoSize = true;
             this.labelSkyScrapers.Font = new System.Drawing.Font("Showcard Gothic", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelSkyScrapers.ForeColor = System.Drawing.Color.Fuchsia;
@@ -618,62 +616,6 @@ namespace Skyscrapers
             this.displayClock.TabIndex = 7;
             this.displayClock.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // highScoreTitle
-            // 
-            this.highScoreTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point);
-            this.highScoreTitle.Location = new System.Drawing.Point(12, 139);
-            this.highScoreTitle.Name = "highScoreTitle";
-            this.highScoreTitle.Size = new System.Drawing.Size(109, 28);
-            this.highScoreTitle.TabIndex = 8;
-            this.highScoreTitle.Text = "High Score";
-            this.highScoreTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // highScore
-            // 
-            this.highScore.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.highScore.Location = new System.Drawing.Point(12, 172);
-            this.highScore.Name = "highScore";
-            this.highScore.Size = new System.Drawing.Size(109, 28);
-            this.highScore.TabIndex = 8;
-            this.highScore.Text = "99:99";
-            this.highScore.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // madeByTitle
-            // 
-            this.madeByTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.madeByTitle.Location = new System.Drawing.Point(12, 202);
-            this.madeByTitle.Name = "madeByTitle";
-            this.madeByTitle.Size = new System.Drawing.Size(109, 28);
-            this.madeByTitle.TabIndex = 8;
-            this.madeByTitle.Text = "Made by";
-            this.madeByTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // highScoreName
-            // 
-            this.highScoreName.BackColor = System.Drawing.Color.White;
-            this.highScoreName.Enabled = false;
-            this.highScoreName.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.highScoreName.Location = new System.Drawing.Point(12, 233);
-            this.highScoreName.MaxLength = 8;
-            this.highScoreName.Name = "highScoreName";
-            this.highScoreName.ReadOnly = true;
-            this.highScoreName.Size = new System.Drawing.Size(109, 36);
-            this.highScoreName.TabIndex = 9;
-            this.highScoreName.Text = "anon.";
-            this.highScoreName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // submit
-            // 
-            this.submit.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.submit.Location = new System.Drawing.Point(33, 275);
-            this.submit.Name = "submit";
-            this.submit.Size = new System.Drawing.Size(67, 30);
-            this.submit.TabIndex = 10;
-            this.submit.Text = "Submit";
-            this.submit.UseVisualStyleBackColor = true;
-            this.submit.Visible = false;
-            this.submit.Click += new System.EventHandler(this.Submit_Click);
-            // 
             // allRightsLabel
             // 
             this.allRightsLabel.AutoSize = true;
@@ -692,15 +634,10 @@ namespace Skyscrapers
             this.BackColor = System.Drawing.Color.DarkMagenta;
             this.ClientSize = new System.Drawing.Size(682, 553);
             this.Controls.Add(this.allRightsLabel);
-            this.Controls.Add(this.submit);
-            this.Controls.Add(this.highScoreName);
-            this.Controls.Add(this.madeByTitle);
-            this.Controls.Add(this.highScore);
-            this.Controls.Add(this.highScoreTitle);
             this.Controls.Add(this.displayClock);
             this.Controls.Add(this.guiPanel);
             this.Controls.Add(this.labelSkyScrapers);
-            this.Controls.Add(this.buttonMainMenu);
+            this.Controls.Add(this.buttonRules);
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.buttonSolve);
             this.Controls.Add(this.buttonHint);
@@ -742,7 +679,7 @@ namespace Skyscrapers
         private System.Windows.Forms.Button buttonNewGame;
         private System.Windows.Forms.Button buttonHint;
         private System.Windows.Forms.Button buttonSolve;
-        private System.Windows.Forms.Button buttonMainMenu;
+        private System.Windows.Forms.Button buttonRules;
         private System.Windows.Forms.Label labelSkyScrapers;
         private System.Windows.Forms.Button buttonExit;
         private System.Windows.Forms.Label cell3x3;
@@ -765,11 +702,6 @@ namespace Skyscrapers
         private System.Windows.Forms.Panel guiPanel;
         private System.Windows.Forms.Timer gameClock;
         private System.Windows.Forms.Label displayClock;
-        private System.Windows.Forms.Label highScoreTitle;
-        private System.Windows.Forms.Label highScore;
-        private System.Windows.Forms.Label madeByTitle;
-        private System.Windows.Forms.TextBox highScoreName;
-        private System.Windows.Forms.Button submit;
         private System.Windows.Forms.Label allRightsLabel;
     }
 }

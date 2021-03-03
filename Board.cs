@@ -1,47 +1,16 @@
 ﻿using System;
 using System.Linq;
-using System.Reflection;
-using System.IO;
-using System.Drawing;
 
 namespace Skyscrapers
 {
+    /// <summary>
+    /// The board class.
+    /// </summary>
     class Board
     {
         // Constants variables
         public const int HintsAmount = 3;
         public const int BoardSize = 4;
-        private const string HighScoreFileName = "/highscores.txt";
-        // Constants Labels text
-        public const string TitleLabelText = "SKYSCRAPERS";
-        public const string HighscoreLabelText = "Highscore";
-        public const string MadeByLabelText = "Made by";
-        public const string AllRightsLabelText = "© 2021 All Rights Reserved.";
-        // Constants Buttons text
-        public const string MainMenuButtonText = "Main Menu";
-        public const string StartButtonText = "Start";
-        public const string NewGameButtonText = "New Game";
-        public const string ResetButtonText = "Reset";
-        public const string HintButtonText = "Hint";
-        public const string SolveButtonText = "Solve";
-        public const string ExitButtonText = "Exit";
-        // Constants messages
-        public const string NewHighScoreEndGameMessage = 
-            "Congratulations! That's a new highscore!\n" +
-                    "(Enter your name and press Submit)";
-        public const string EndGameMessage = 
-            "Congratulations! You finished the puzzle!";
-        public const string SolvedByComputerMessage =
-            "Puzzle was solved by the Computer!";
-        public const string ComputerCouldNotSolveMessage =
-            "There is not an available solution for this specific puzzle!";
-        public const string DefaultSubmitName = "anon.";
-        // Constants colors
-        public Color TitleColor = Color.Fuchsia;
-        public Color TimerColor = Color.DarkMagenta;
-        public Color EdgesColor = Color.Orchid;
-        public Color ChosenCellColor = Color.Gray;
-        public Color ResetCellColor = Color.Pink;
         // Example Board
         private int[,] ExampleBoard;
 
@@ -51,8 +20,6 @@ namespace Skyscrapers
         private int[,] ResetBoard { get; }
         private int[,] SolvingBoard { get; set; }
         private int CountHints { get; set; }
-        private string FilePath { get; set; }
-        private (string,string) HighScore { get; set; }
 
         public Board(int size)
         { 
@@ -65,33 +32,7 @@ namespace Skyscrapers
             ResetBoard = new int[size,size];
             SolvingBoard = new int[size, size];
             CountHints = HintsAmount;
-            HighScore = InitHighScore();
         }
-
-        private (string, string) InitHighScore()
-        {
-            String project_dir = (
-                new Uri(Assembly.GetExecutingAssembly().CodeBase)
-            ).AbsolutePath;
-            FilePath = project_dir.Remove(
-                               project_dir.LastIndexOf("/")) + HighScoreFileName;
-            string[] high_score_details = File.ReadLines(FilePath).ToArray();
-            return (high_score_details[0], high_score_details[1]);
-        }
-
-        public bool CheckHighScore(string current_score)
-        {
-            if (HighScore.Item1 == "")
-                return true;
-            int calc_cur_score = int.Parse(current_score.Remove(2)) * 60
-                            + int.Parse(current_score.Substring(3));
-            int calc_high_score = int.Parse(HighScore.Item1.Remove(2)) * 60
-                            + int.Parse(HighScore.Item1.Substring(3));
-            if (calc_cur_score < calc_high_score)
-                return true;
-            return false;
-        }
-
 
         static int[,] GenerateBoard(int size)
         {
@@ -118,7 +59,7 @@ namespace Skyscrapers
         }
 
         static bool CheckRow(int[,] built_board, int[] seq)
-        { //
+        { 
             for (int j = 0; j < built_board.GetLength(0); j++)
             {
                 for (int i = 0; i < seq.Length; i++)
@@ -214,22 +155,6 @@ namespace Skyscrapers
             }
         }
 
-        internal bool DidNotUsedHints()
-        { //Check if the user used hints
-            if (HintsAmount == CountHints)
-                return true;
-            else
-                return false;
-        }
-
-        internal void UpdateHighScore((string,string) new_highscore)
-        { //Update high score
-            File.WriteAllText(FilePath, "");
-            StreamWriter sw = new StreamWriter(FilePath);
-            sw.WriteLine(new_highscore.Item1);
-            sw.WriteLine(new_highscore.Item2);
-            sw.Close();
-        }
 
         //Gets methods:
         public int[,] GetResetBoard()
@@ -254,11 +179,6 @@ namespace Skyscrapers
         public int GetCountHints()
         {
             return CountHints;
-        }
-
-        public (string, string) GetHighScore()
-        {
-            return HighScore;
         }
 
         public (int,int) GetHint()
