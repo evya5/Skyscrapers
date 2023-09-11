@@ -1,10 +1,8 @@
 # Skyscrapers & Backtracking
-Skyscrapers also known as "Towers" is a logic puzzle with simple rules and challenging solutions.
-
 
 ## Overview
 
-Skyscrapers is a Windows Forms-based puzzle game that challenges players to strategically place skyscrapers on a grid while adhering to specific rules and edge constraints. This README provides an overview of the project, its features, and how to get started with the game.
+Skyscrapers also known as "Towers" is a logic puzzle with simple rules and challenging solutions. This version is a Windows Forms-based puzzle game that challenges players to strategically place skyscrapers on a grid while adhering to specific rules and edge constraints. This README provides an overview of the project, its features, and how to get started with the game.
 A solve button calculates the solution for each board using Backtracking algorithm.
 
 ## Features
